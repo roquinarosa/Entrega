@@ -16,13 +16,22 @@ Including another URLconf
 """
 from django.urls import path
 from AppLaVecchia import views
+from AppLaVecchia import class_views
 
 urlpatterns = [
-    path('', views.inicio),
-    path('menu/', views.menu),
-    path('reservas/', views.reservas),
-    path('contacto/', views.contacto),
+    path('', views.inicio,name="Inicio"),
+    path('menu/', views.menu,name="Menu"),
+    path('reservas/', views.reservas,name="Reservas"),
+    path('contacto/', views.contacto,name="Contacto"),
       
    
+]
+
+urlpatterns += [
+    path('class-list/', class_views.CursoListView.as_view(), name="List"),
+    path('class-detail/<pk>/', class_views.CursoDetailView.as_view(), name="Detail"),
+    path('class-create/', class_views.CursoCreateView.as_view(), name="Create"),
+    path('class-update/<pk>/', class_views.CursoUpdateView.as_view(), name="Update"),
+    path('class-delete/<pk>/', class_views.CursoDeleteView.as_view(), name="Delete"),
 ]
 
